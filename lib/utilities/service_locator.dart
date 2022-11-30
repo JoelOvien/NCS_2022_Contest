@@ -5,6 +5,7 @@ import '../core/api/api_client.dart';
 import '../core/app/db.dart';
 import '../core/app/domains/app_provider.dart';
 import '../core/app/repositories/base_repository.dart';
+import '../core/app/repositories/user_repository.dart';
 
 final locator = GetIt.instance;
 
@@ -19,8 +20,10 @@ void setupLocator() {
 
   //Repository
   locator.registerLazySingleton<PreferenceRepository>(PreferenceRepository.new);
+  locator.registerLazySingleton<UserRepository>(UserRepository.new);
 }
 
 List<BaseRepository> repositories = [
   locator.get<PreferenceRepository>(),
+  locator.get<UserRepository>(),
 ];

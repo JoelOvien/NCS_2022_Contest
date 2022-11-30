@@ -1,31 +1,33 @@
-// // ignore_for_file: depend_on_referenced_packages
+import 'package:hive/hive.dart';
 
-// import 'package:hive/hive.dart';
-// class UserRepository extends BaseRepository {
-//   Future<Box<UserEntity>> get _box async {
-//     final box = await Hive.openBox<UserEntity>(UserEntity.tableName);
-//     return box;
-//   }
+import '../../../modules/authentication/domains/entities/user_entity.dart';
+import 'base_repository.dart';
 
-//   Future<UserEntity?> getUser() async {
-//     final box = await _box;
-//     return box.get(UserEntity.localId);
-//   }
+class UserRepository extends BaseRepository {
+  Future<Box<UserEntity>> get _box async {
+    final box = await Hive.openBox<UserEntity>(UserEntity.tableName);
+    return box;
+  }
 
-//   Future<UserEntity?> setUser({
-//     required Map<String, dynamic> userData,
-//   }) async {
-//     // ignore: unused_local_variable
-//     final oldUser = await getUser();
+  Future<UserEntity?> getUser() async {
+    final box = await _box;
+    return box.get(UserEntity.localId);
+  }
 
-//     final UserEntity newUser = UserEntity(userData: userData, uuid: userData["id"]);
-//     final box = await _box;
-//     await box.put(UserEntity.localId, newUser);
-//     return newUser;
-//   }
+  Future<UserEntity> setUser({
+    required Map<String, dynamic> userData,
+  }) async {
+    // ignore: unused_local_variable
+    final oldUser = await getUser();
 
-//   @override
-//   Future<void> clear() async {
-//     await _box.then((box) => box.clear());
-//   }
-// }
+    final UserEntity newUser = UserEntity(userData: userData, uuid: userData["id"]);
+    final box = await _box;
+    await box.put(UserEntity.localId, newUser);
+    return newUser;
+  }
+
+  @override
+  Future<void> clear() async {
+    await _box.then((box) => box.clear());
+  }
+}

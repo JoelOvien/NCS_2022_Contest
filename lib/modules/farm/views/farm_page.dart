@@ -134,19 +134,20 @@ class _FarmPageState extends ConsumerState<FarmPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                height: 32,
-                                width: 32,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: AppColors.brandGreen),
+                              height: 32,
+                              width: 32,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: AppColors.brandGreen),
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.camera,
+                                  size: 16,
+                                  color: AppColors.brandGreen.withOpacity(0.80),
                                 ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.camera,
-                                    size: 16,
-                                    color: AppColors.brandGreen.withOpacity(0.80),
-                                  ),
-                                )),
+                              ),
+                            ),
                             const YMargin(4),
                             Text(
                               "Camera",

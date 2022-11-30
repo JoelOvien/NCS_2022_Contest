@@ -90,72 +90,73 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                 children: [
                   ...List.generate(
                     farmController.farmValues.length,
-                    (index) => Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 92,
-                              width: 160,
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: const Color(0xffECFFF3),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 32,
-                                          width: 32,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8),
-                                            border: Border.all(color: AppColors.brandGreen),
+                    (index) => SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 92,
+                                width: 160,
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: const Color(0xffECFFF3),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            height: 32,
+                                            width: 32,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8),
+                                              border: Border.all(color: AppColors.brandGreen),
+                                            ),
+                                            padding: const EdgeInsets.all(9),
+                                            child: SvgPicture.asset(
+                                              SvgAssetPath.irrigation,
+                                              height: 17,
+                                              width: 14,
+                                            ),
                                           ),
-                                          padding: const EdgeInsets.all(9),
-                                          child: SvgPicture.asset(
-                                            SvgAssetPath.irrigation,
-                                            height: 17,
-                                            width: 14,
+                                          const YMargin(4),
+                                          Text(
+                                            "Irrigation",
+                                            style: normalStyle(16, AppColors.brandBlack),
                                           ),
-                                        ),
-                                        const YMargin(4),
-                                        Text(
-                                          "Irrigation",
-                                          style: normalStyle(16, AppColors.brandBlack),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  CupertinoSwitch(
-                                    value: farmController.farmValues[farmController.index]
-                                        ['irrigate'],
-                                    onChanged: (_) {
-                                      farmController.switchIrrigation(_);
-                                    },
-                                  ),
-                                ],
+                                    CupertinoSwitch(
+                                      value: farmController.farmValues[farmController.index]
+                                          ['irrigate'],
+                                      onChanged: (_) {
+                                        farmController.switchIrrigation(_);
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              height: 92,
-                              width: 160,
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: const Color(0xffECFFF3),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
+                              Container(
+                                height: 92,
+                                width: 160,
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: const Color(0xffECFFF3),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
                                             height: 32,
                                             width: 32,
                                             decoration: BoxDecoration(
@@ -168,89 +169,94 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                                                 size: 16,
                                                 color: AppColors.brandGreen.withOpacity(0.80),
                                               ),
-                                            )),
-                                        const YMargin(4),
-                                        Text(
-                                          "Camera",
-                                          style: normalStyle(16, AppColors.brandBlack),
-                                        ),
-                                      ],
+                                            ),
+                                          ),
+                                          const YMargin(4),
+                                          Text(
+                                            "Camera",
+                                            style: normalStyle(16, AppColors.brandBlack),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  CupertinoSwitch(
-                                    value: farmController.farmValues[farmController.index]
-                                        ['camera'],
-                                    onChanged: (_) {
-                                      farmController.switchCamera(_);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const YMargin(20),
-                        Container(
-                          width: double.maxFinite,
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.greyF6,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Details",
-                                style: normalStyle(16, AppColors.brandBlack),
-                              ),
-                              const YMargin(8),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Soil",
-                                    style: normalStyle(16, AppColors.brandBlack),
-                                  ),
-                                  Text(
-                                    farmController.farmValues[farmController.index]['Soil'],
-                                    style: normalStyle(16, AppColors.brandGrey),
-                                  ),
-                                ],
-                              ),
-                              const YMargin(8),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Crop",
-                                    style: normalStyle(16, AppColors.brandBlack),
-                                  ),
-                                  Text(
-                                    farmController.farmValues[farmController.index]['crop'],
-                                    style: normalStyle(16, AppColors.brandGrey),
-                                  ),
-                                ],
+                                    CupertinoSwitch(
+                                      value: farmController.farmValues[farmController.index]
+                                          ['camera'],
+                                      onChanged: (_) {
+                                        farmController.switchCamera(_);
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                        const YMargin(15),
-                        if (farmController.farmValues[farmController.index]['camera'])
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: SizedBox(
-                              height: 200,
-                              width: double.maxFinite,
-                              child: YoutubePlayer(
-                                controller: _controller,
-                                showVideoProgressIndicator: true,
-                              ),
+                          const YMargin(20),
+                          Container(
+                            width: double.maxFinite,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.greyF6,
                             ),
-                          )
-                        else
-                          const SizedBox.shrink(),
-                      ],
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Details",
+                                  style: normalStyle(16, AppColors.brandBlack),
+                                ),
+                                const YMargin(8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Soil",
+                                      style: normalStyle(16, AppColors.brandBlack),
+                                    ),
+                                    Text(
+                                      farmController.farmValues[farmController.index]['Soil'],
+                                      style: normalStyle(16, AppColors.brandGrey),
+                                    ),
+                                  ],
+                                ),
+                                const YMargin(8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Crop",
+                                      style: normalStyle(16, AppColors.brandBlack),
+                                    ),
+                                    Text(
+                                      farmController.farmValues[farmController.index]['crop'],
+                                      style: normalStyle(16, AppColors.brandGrey),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const YMargin(15),
+                          if (farmController.farmValues[farmController.index]['camera'])
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: SizedBox(
+                                height: 200,
+                                width: double.maxFinite,
+                                child: YoutubePlayer(
+                                  controller: _controller,
+                                  showVideoProgressIndicator: true,
+                                ),
+                              ),
+                            )
+                          else
+                            const SizedBox.shrink(),
+                          const YMargin(10),
+                          SvgPicture.asset("assets/svgs/field_data.svg"),
+                          const YMargin(30),
+                        ],
+                      ),
                     ),
                   ),
                 ],

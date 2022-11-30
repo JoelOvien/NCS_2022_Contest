@@ -9,7 +9,6 @@ import 'package:smart_irrigation/utilities/custom_navigator.dart';
 import 'package:smart_irrigation/utilities/margin_util.dart';
 import 'package:smart_irrigation/utilities/ui_utilities/app_colors.dart';
 import 'package:smart_irrigation/utilities/ui_utilities/text_style_util.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../farm/domains/providers/farm_provider.dart';
 
@@ -22,13 +21,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final _controller = YoutubePlayerController(
-    initialVideoId: 'HqffCwgE9u0',
-    flags: const YoutubePlayerFlags(
-      mute: true,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     final farmController = ref.watch(farmProvider);
@@ -275,19 +267,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                                height: 32,
-                                                width: 32,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(color: AppColors.brandGreen),
+                                              height: 32,
+                                              width: 32,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(color: AppColors.brandGreen),
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.camera,
+                                                  size: 16,
+                                                  color: AppColors.brandGreen.withOpacity(0.80),
                                                 ),
-                                                child: Center(
-                                                  child: Icon(
-                                                    Icons.camera,
-                                                    size: 16,
-                                                    color: AppColors.brandGreen.withOpacity(0.80),
-                                                  ),
-                                                )),
+                                              ),
+                                            ),
                                             const YMargin(4),
                                             Text(
                                               "Camera",

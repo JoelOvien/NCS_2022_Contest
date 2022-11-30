@@ -22,6 +22,7 @@ class ProfileSetupPage extends StatefulWidget {
 class _ProfileSetupPageState extends State<ProfileSetupPage> {
   final name = TextEditingController();
   final occupation = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,36 +32,55 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Center(
-                child: SvgPicture.asset(
-                  SvgAssetPath.profilePic,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Center(
+                  child: SvgPicture.asset(
+                    SvgAssetPath.profilePic,
+                  ),
                 ),
-              ),
-              const YMargin(16),
-              Text(
-                "Fill your profile",
-                style: boldStyle(24, AppColors.brandBlack),
-              ),
-              const YMargin(16),
-              CustomTextField(
-                controller: name,
-                hintText: "Name",
-              ),
-              const YMargin(16),
-              CustomTextField(
-                controller: occupation,
-                hintText: "Occupation",
-              ),
-              const Spacer(),
-              Button(
-                text: "Submit",
-                function: () {
-                  CustomNavigator.routeForEver(context, NavBarWidget.routeName);
-                },
-              ),
-            ],
+                const YMargin(16),
+                Text(
+                  "Fill your profile",
+                  style: boldStyle(24, AppColors.brandBlack),
+                ),
+                const YMargin(16),
+                CustomTextField(
+                  controller: name,
+                  hintText: "Name",
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return "Name cannot be empty";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const YMargin(16),
+                CustomTextField(
+                  controller: occupation,
+                  hintText: "Occupation",
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return "Occupation cannot be empty";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const Spacer(),
+                Button(
+                  text: "Submit",
+                  function: () {
+                    if (_formKey.currentState!.validate()) {
+                      CustomNavigator.routeForEver(context, NavBarWidget.routeName);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
