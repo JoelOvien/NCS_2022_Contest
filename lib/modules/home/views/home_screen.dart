@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_irrigation/modules/farm/views/farm_page.dart';
 import 'package:smart_irrigation/modules/home/views/widgets/home_widget.dart';
 import 'package:smart_irrigation/modules/notification/views/notification_page.dart';
 import 'package:smart_irrigation/utilities/asset_path_util.dart';
@@ -149,25 +148,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         ),
                         const YMargin(26),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "My Fields",
-                                style: normalStyle(16, AppColors.brandBlack),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                CustomNavigator.route(context, FarmPage.routeName);
-                              },
-                              child: Text(
-                                "See all",
-                                style: normalStyle(16, AppColors.brandGreen),
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Expanded(
+                        //       child: Text(
+                        //         "My Fields",
+                        //         style: normalStyle(16, AppColors.brandBlack),
+                        //       ),
+                        //     ),
+                        //     GestureDetector(
+                        //       onTap: () {
+                        //         CustomNavigator.route(context, FarmPage.routeName);
+                        //       },
+                        //       child: Text(
+                        //         "See all",
+                        //         style: normalStyle(16, AppColors.brandGreen),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         const YMargin(20),
                         Column(
                           children: [
@@ -301,7 +300,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                         value: farmController.farmValues[farmController.index]
                                             ['camera'],
                                         onChanged: (_) {
-                                          farmController.switchIrrigation(_);
+                                          farmController.switchCamera(_);
                                         },
                                       ),
                                     ],
@@ -324,15 +323,3 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 }
-
-    // ClipRRect(
-    //                       borderRadius: BorderRadius.circular(12),
-    //                       child: SizedBox(
-    //                         height: 200,
-    //                         width: double.maxFinite,
-    //                         child: YoutubePlayer(
-    //                           controller: _controller,
-    //                           showVideoProgressIndicator: true,
-    //                         ),
-    //                       ),
-    //                     ),

@@ -158,7 +158,7 @@ class _FarmPageState extends ConsumerState<FarmPage> {
                       CupertinoSwitch(
                         value: farmController.farmValues[farmController.index]['camera'],
                         onChanged: (_) {
-                          farmController.switchIrrigation(_);
+                          farmController.switchCamera(_);
                         },
                       ),
                     ],
