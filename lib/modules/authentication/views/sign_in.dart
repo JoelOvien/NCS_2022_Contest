@@ -47,12 +47,12 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const YMargin(24),
                   CustomTextField(
-                    controller: username,
-                    hintText: "Username",
-                    prefixIcon: const Icon(Icons.person_outline),
+                    controller: email,
+                    hintText: "Email",
+                    prefixIcon: const Icon(Icons.mail_outline),
                     validator: (s) {
-                      if (s!.isEmpty) {
-                        return "Username cannot be empty";
+                      if (!s!.isValidEmail()) {
+                        return "Invalid Email";
                       } else {
                         return null;
                       }
@@ -60,12 +60,12 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const YMargin(16),
                   CustomTextField(
-                    controller: email,
-                    hintText: "Email",
-                    prefixIcon: const Icon(Icons.mail_outline),
+                    controller: username,
+                    hintText: "Password",
+                    prefixIcon: const Icon(Icons.lock_outline),
                     validator: (s) {
-                      if (!s!.isValidEmail()) {
-                        return "Invalid Email";
+                      if (s!.isEmpty) {
+                        return "Password cannot be empty";
                       } else {
                         return null;
                       }
@@ -112,6 +112,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ],
                   ),
+                  const YMargin(30),
                 ],
               ),
             ),

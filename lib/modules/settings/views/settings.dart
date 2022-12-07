@@ -118,10 +118,50 @@ class _SettingsPageState extends State<SettingsPage> {
                     subtitle: "Name, location etc",
                   ),
                 ),
-                const ProfileItemWidget(
-                  imagePath: SvgAssetPath.sIrrigation,
-                  title: "Smart Scheduling",
-                  subtitle: "Irrigation etc",
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          buttonPadding: EdgeInsets.zero,
+                          contentPadding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          content: SizedBox(
+                            width: screenWidth(context, percent: 0.9),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                YMargin(screenHeight(context, percent: 0.06)),
+                                Text(
+                                  "Smart Irrigation",
+                                  textAlign: TextAlign.center,
+                                  style: mediumStyle(16, AppColors.brandBlack),
+                                ),
+                                YMargin(screenHeight(context, percent: 0.02)),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Select time to irrigate",
+                                    textAlign: TextAlign.center,
+                                    style: normalStyle(14, AppColors.brandBlack),
+                                  ),
+                                ),
+                                YMargin(screenHeight(context, percent: 0.03)),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: const ProfileItemWidget(
+                    imagePath: SvgAssetPath.sIrrigation,
+                    title: "Smart Scheduling",
+                    subtitle: "Irrigation etc",
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_irrigation/animations/slide_in_right.dart';
-import 'package:smart_irrigation/modules/authentication/views/profile_setup.dart';
 import 'package:smart_irrigation/modules/authentication/views/sign_in.dart';
 import 'package:smart_irrigation/utilities/custom_navigator.dart';
 import 'package:smart_irrigation/utilities/extensions.dart';
@@ -11,6 +11,7 @@ import 'package:smart_irrigation/utilities/ui_utilities/widgets/custom_textfield
 
 import '../../../utilities/ui_utilities/app_colors.dart';
 import '../../../utilities/ui_utilities/text_style_util.dart';
+import '../domains/providers/login_provider.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/sign_up';
@@ -86,14 +87,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const YMargin(26),
-                  Button(
-                    text: "Sign Up",
-                    function: () {
-                      if (_formKey.currentState!.validate()) {
-                        CustomNavigator.route(context, ProfileSetupPage.routeName);
-                      }
-                    },
-                  ),
+                  Consumer(builder: (context, ref, __) {
+                    final signUpController = ref.watch(loginProvider);
+                    return Button(
+                      text: "Sign Up",
+                      loading: signUpController.loading,
+                      function: () {
+                        if (_formKey.currentState!.validate()) {
+                          signUpController.reg(context);
+                        }
+                      },
+                    );
+                  }),
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -116,6 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ],
                   ),
+                  const YMargin(30),
                 ],
               ),
             ),

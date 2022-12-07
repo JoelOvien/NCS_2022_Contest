@@ -79,6 +79,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     }
                   },
                 ),
+                const YMargin(30),
               ],
             ),
           ),

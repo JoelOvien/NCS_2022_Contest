@@ -3,11 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/app/repositories/user_repository.dart';
 import '../../../../utilities/custom_navigator.dart';
-import '../../../../utilities/service_locator.dart';
 import '../../../nav_bar/views/widgets/nav_bar_widget.dart';
-import '../models/user.dart';
+import '../../views/profile_setup.dart';
 
 ChangeNotifierProvider<LoginProvider> loginProvider =
     ChangeNotifierProvider((ref) => LoginProvider(ref: ref));
@@ -43,9 +41,16 @@ class LoginProvider extends ChangeNotifier {
 
     loading = false;
 
-    final User user = User(username: username, password: password);
-
-    await locator.get<UserRepository>().setUser(userData: user.toJson());
     CustomNavigator.routeForEver(context, NavBarWidget.routeName);
+  }
+
+  dynamic reg(
+    BuildContext context,
+  ) async {
+    loading = true;
+    await Future.delayed(const Duration(seconds: 2));
+
+    loading = false;
+    CustomNavigator.route(context, ProfileSetupPage.routeName);
   }
 }
